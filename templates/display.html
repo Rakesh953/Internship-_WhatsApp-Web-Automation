@@ -1,0 +1,40 @@
+{% extends 'dummpy.html' %}
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+{% block content %}
+ <center>
+    <div>
+        <h1>userdetail</h1>
+       
+        <table border="2px">
+            <tr>
+                <th>usernam</th>
+                <th>message</th>
+                <th>reuser</th>
+                <th>replay</th>
+                <th>date</th>
+                <th>time</th>
+            </tr>
+            {% for x in us %}
+            <tr>
+                <td>{{x.username}} </td>
+                <td>{{x.id}} </td>
+                <td>{{x.pk}}</td>
+                <td>{{x.message}} </td>
+                <td>{{x.reusername}} </td>
+                <td>{{x.replay}} </td>
+                <td>{{x.send_Date}}</td>
+                <td>{{x.send_Time}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% for x in k %}
+        {{x.username}}
+        {{x.pk}}
+        {% endfor %}
+    </div>
+ </center>
+{% endblock %}

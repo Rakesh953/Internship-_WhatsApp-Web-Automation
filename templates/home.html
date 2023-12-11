@@ -1,0 +1,191 @@
+{% extends 'dummpy.html' %}
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+{% block content %}
+<style>
+    
+    
+</style>
+<div class="overall">
+    <div class="chat-home">
+      {% for i in us %} 
+        {% for x in pro %}
+          {% if i == x.username %}
+            <div class="home-box-holder">
+              <div class="home-sender">
+                <div class="pro_i">
+                  {% if x.profile_pic %}
+                    <img src="{{x.profile_pic.url}}" alt="">
+                  {% else %}
+                    <img src="../static/image/Default.svg.png" alt="">
+                  {% endif %}
+                </div>
+                <a href="{% url 'message' pk=i.pk %}"><h3>{{i.username}}</h3></a>
+              </div>
+            </div>
+          {% endif %}
+
+        {% endfor %}
+      {% endfor %}
+    </div>
+  {% if user_pro.username %}
+    <div class="chatbox-holder">
+      <div class="chatbox">
+          <div class="chatbox-top">
+              {% if user_pro.profile_pic %}
+              <div class="chatbox-avatar">
+                <a target="_blank" href=""><img src="{{user_pro.profile_pic.url}}" /></a> 
+              </div>
+              {% endif %}
+              <div class="chat-partner-name">
+                  <span class="status online"></span>
+                  <a target="_blank" href=""><h1> {{user_pro.username}}</h1></a>
+              </div>     
+          </div>
+        <div class="chat-messages">
+          {% if use %}
+          {% for x in use %}
+          {% if x.message %}   
+          <div class="message-box-holder">
+            <div class="message-box">
+              
+              {% if x.message|slice:'-4::'|lower == '.st3' %}
+                <h1><a href="{% url 'req_status' id=x.message|slice:'-5:-4:'|lower %}">{{user}} status</a><span>{{x.send_Time}}</span></h1>
+              {% elif x.message %}
+                <h1 onclick="deleted()">{{x.message}}<span>{{x.send_Time}}</span></h1>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+          {% if ".mp4" == x.imagevideo|make_list|slice:'-4::'|join:''|lower %}
+            <div class="message-box-holder">
+                <div class="message-box">
+                  <h1><a href="{{x.imagevideo}}" download><video width="300px"  height="auto" controls>
+                    <source src="{{x.imagevideo.url}}" type="video/mp4">
+                    
+                  </video></a><span class="span_t">{{x.send_Time}}</span></h1>                
+                </div>
+            </div>
+            
+          {% elif ".mp3" == x.imagevideo|make_list|slice:'-4::'|join:''|lower %}
+            <div class="message-box-holder">
+              <div class="message-box">
+                <h1><audio controls preload="auto">
+                  <source src="{{x.imagevideo.url}}" type="audio/mpeg"><a href="{{x.imagevideo.url}}" download>{{x.imagevideo}}</a>
+                </audio><span>{{x.send_Time}}</span></h1>
+              </div>
+            </div>
+          {% elif x.imagevideo %}
+            <div class="message-box-holder">
+              <div class="message-box">
+                <h1><a href="{{x.imagevideo}}" download><img src="{{x.imagevideo.url}}" alt="" width="300px" height="auto"></a><span class="span_t">{{x.send_Time}}</span></h1>
+              </div>
+            </div>
+          {% endif %}
+          {% if x.pdf_file %}
+            <div class="message-box-holder">
+              <div class="message-box">
+                  <h1><a href="{{x.pdf_file.url}}" download>{{x.pdf_file|make_list|slice:'4:'|join:''}}<i class="fa fa-download" aria-hidden="true"></i>
+                  </a><span>{{x.send_Time}}</span></h1>                
+              </div>
+            </div>
+          {% endif %}
+          {% if x.replay %}
+          <div class="message-box-holder">
+            <div class=" message-partner">
+              <h1>{{x.replay}}<span>{{x.send_Time}}</h1>
+            </div>
+          </div>
+          {% endif %}
+          
+          {% endfor %}
+          {% endif %}
+        </div>
+        <div class="chat-input-holder">
+          <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <label  class="icon" onclick="showhide()"><i class="fa-solid fa-photo-film"></i></label>
+                <input type="text" class="chat-input" name="message" id="message">
+              <button type="submit" value="Send" class="message-send" >></button>
+              <div id="imagevideo">
+                <label for="image1" class="label"> Video & image</label><span  onclick="image()">x</span>
+                <input type="file" name="image1" id="image1">
+                <button type="submit">Send</button>
+              </div>
+              <div id="document">
+                <label for="doc"> image</label><span onclick="document1()">x</span>
+                <input type="file" name="document1" id="doc">
+                <button type="submit">Send</button>
+              </div>
+              <div id="pdf">
+                <label for="pd"> pdf</label><span onclick="pdf1()">x</span>
+                <input type="file" name="pdf1" id="pd">
+                <button type="submit">Send</button>
+              </div>
+              <div id="hide">
+                <p onclick="image()">Image & Video</p>
+                <p onclick="document1()">Document</p>
+                <p onclick="pdf1()">PDF</p>
+              </div>
+          </form>
+        </div>
+      </div>
+      </div>
+  </div>
+  {% else %}
+    <div class="reg_form">
+      <img src="../static/image/message.gif" alt="" width="800px" height="450px">
+    </div>
+  {% endif %}
+  <script>
+    function deleted(){ 
+      var x=document.getElementById("delete_tag");
+      if (x.style.display === "block"){
+        x.style.display="none";
+      }else{
+        x.style.display="block";
+      }
+    }
+    function showhide(){
+      var x=document.getElementById("hide");
+      if (x.style.display === "block"){
+        x.style.display="none";
+      }else{
+        x.style.display="block";
+      }
+    }
+    function image(){
+      var y=document.getElementById("imagevideo")
+      if (y.style.display === "block"){
+        y.style.display="none";
+      }else{
+        y.style.display="block";
+      }
+    }
+    function document1(){
+      var y=document.getElementById("document")
+      if (y.style.display === "block"){
+        y.style.display="none";
+      }else{
+        y.style.display="block";
+      }
+    }
+    function pdf1(){
+      var y=document.getElementById("pdf")
+      if (y.style.display === "block"){
+        y.style.display="none";
+      }else{
+        y.style.display="block";
+      }
+    }
+  </script>
+  
+</div>
+
+{% endblock %}
+
+
+

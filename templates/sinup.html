@@ -1,0 +1,30 @@
+{% extends 'dummpy.html' %}
+
+{% block title %}
+<title>Sinup</title>
+{% endblock %}
+
+{% block content %}
+<div class="reg_form">
+    <video class="video" src="../static/image/reg.mp4" loop muted autoplay></video>
+    <div class="form">
+        <center>
+            <div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li style="color: red;"  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <h1>Sinup </h1>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{obj.as_p}}
+                    <input type="submit" class="input" value="submit">
+                </form>
+            </div>
+        </center>
+    </div>
+</div>
+{% endblock %}

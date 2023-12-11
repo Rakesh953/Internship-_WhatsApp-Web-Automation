@@ -1,0 +1,18 @@
+{% extends 'dummpy.html' %}
+
+{% block title %}
+<title>image</title>
+{% endblock %}
+
+{% block content %}
+<center>
+    <div>
+        <h1>Image</h1>
+        <form action="{% url 'message' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image" id="">
+            <input type="submit" value="submit">
+        </form>
+    </div>
+</center>
+{% endblock %}

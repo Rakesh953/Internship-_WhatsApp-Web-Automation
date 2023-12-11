@@ -1,0 +1,29 @@
+{% extends 'dummpy.html' %}
+
+{% block title %}
+<title>Sinup</title>
+{% endblock %}
+
+{% block content %}
+
+<form  method="POST">
+    {% csrf_token %}
+    {% for x in use %}    
+    <div class="home-box-holder">
+        <div class="home-sender">
+            <div class="pro_i">
+            {% if x.username.pro_pic %}
+                <img src="{{x.username.pro_pic.profile_pic.url}}" alt="">
+            {% else %}
+                <img src="../static/image/Default.svg.png" alt="">
+            {% endif %}
+            </div>
+            <h3>{{x.username}}</h3><input type="checkbox" name="user" value="{{x.pk}}" id="user">
+        </div>
+    </div>
+    {% endfor %}
+    <input type="submit" value="send">
+
+</form>
+
+{% endblock %}

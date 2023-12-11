@@ -1,0 +1,50 @@
+{% extends 'dummpy.html' %}
+
+{% block title %}
+<title>Status</title>
+{% endblock %}
+
+{% block content %} 
+    <div class="status">
+        <div class="chat-home">
+            <form  method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="status" id="status">
+                <input type="submit" value="submit">
+            </form>
+            <div>
+                <div class="home-box-holder">
+                    <div class="home-sender">
+                        <div class="pro_i">
+                            {% if user.pro_pic %}
+                                <img src="{{user.pro_pic.profile_pic.url}}" alt="">
+                            {% else %}
+                                <img src="../static/image/Default.svg.png" alt="">
+                            {% endif %}
+                        </div>
+                    <a href="{% url 'req_status' id=user.pk %}"><h3>You</h3> <span style="position:absolute; right:10px;top:20px;color:black">{{x.status_time|time:"H:i"}}</span></a>
+                </div>
+            </div>
+            <hr>
+            </div>
+            {% for i in status %} 
+                {% for x in pro %}
+                    {% if i == x.username %}
+                            <div class="home-box-holder">
+                                <div class="home-sender">
+                                    <div class="pro_i">
+                                    {% if x.profile_pic %}
+                                        <img src="{{x.profile_pic.url}}" alt="">
+                                    {% else %}
+                                        <img src="../static/image/Default.svg.png" alt="">
+                                    {% endif %}
+                                    </div>
+                                    <a href="{% url 'req_status' id=i.id %}"><h3>{{i.username}}</h3><span style="position:absolute; right:10px;top:20px;color:black">{{i.status_time|time:"H:i"}}</span></a>
+                                </div>
+                            </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

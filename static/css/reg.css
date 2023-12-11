@@ -1,0 +1,94 @@
+.b_v
+{
+    
+    position: relative;
+    background-color:rgb(17, 16, 16);
+    
+}
+.b_v>video
+{
+  width: 100%;
+  height: 100vh;
+  
+}
+
+.b_v>center
+{
+    position: absolute;
+    top: 50px;
+    left: 40%;
+}
+.reg_c
+{
+    display: block;
+    align-items: center;
+    justify-items: center;
+   
+    
+}
+.w
+{
+    background-color:rgb(140 204 233 / 45%);
+    color: currentColor;
+}
+
+.fom
+{
+    background-color: #0d0f10ab;
+    color: #e39021;
+    border-radius: 20px;
+    margin-left: 10px;
+    padding: 10px;
+    text-decoration: none;
+}
+.reg_form
+{
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100vh;
+}
+.video
+{
+    min-width: 100%;
+    min-height: 100vh;
+    z-index: 1;
+}
+.form 
+{
+    background-color:rgba(245, 245, 245, 0.247);
+    position: absolute;
+    top: 100px;
+    left:20%;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+.form-1
+{
+    background-color:rgba(245, 245, 245, 0.247);
+    position: absolute;
+    top: 100px;
+    left:40%;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+form>p
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+form>.input
+{
+    background-color: black;
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: medium;
+}
+form>input:hover
+{
+    cursor: pointer;
+    background-color: antiquewhite;
+    color: black;
+}

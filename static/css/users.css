@@ -1,0 +1,52 @@
+.overall
+    {
+      display: grid;
+      grid-template-columns: 400px auto;
+      grid-template-rows: 450px;
+    }
+    .chat-home
+    {
+        border-top: 1px solid rgba(0, 0, 0, .05);
+        padding: 3px;
+        overflow: auto;
+        background-color:#d6dfd6;
+        flex-flow: row wrap;
+        font-size: large;
+        align-content: flex-start;
+        flex: 1;
+        overflow-y: scroll
+    }
+    .home-box-holder
+    {
+      padding: 2px;
+      display: block;
+    }
+    .home-sender
+    {
+      background-color:white;
+      display: flex;
+      position: relative;
+      
+    }
+    .home-sender:hover
+    {
+      background-color:white;
+      padding: 2px;
+      border: 2px solid  rosybrown; 
+    }
+    .pro_i>img {
+        border-radius: 50%;
+        width: 50px ;
+        height: 50px;
+        margin: 10px 10px 0px 20px;
+        
+    }
+    .home-sender>a
+    {
+      text-decoration: none;
+    }
+    .home-sender>a>h3
+    {
+      color: #15171a;
+     
+    }

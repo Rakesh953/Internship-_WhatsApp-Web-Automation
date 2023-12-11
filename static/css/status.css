@@ -1,0 +1,57 @@
+.stat_user
+{
+    position:relative;
+    top: 0px;
+    left: 30px;
+    background-color: aquamarine;
+}
+.status
+{
+    display: grid;
+    grid-template-columns: 400px auto;
+    grid-template-rows: 450px;
+}
+.st{
+    background-color: rgb(206, 206, 187);
+    width: 400px;
+    height: auto;
+    border: 2px solid black;
+}
+.status_pro
+{
+    background-color: white;
+    height: 70px;
+}
+.status_pro>img
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px;
+}
+.status_pro>h1
+{
+    position: relative;
+    top: -80px;
+    left: 80px;
+}
+.status_pro>h1>a>button
+{
+    background-color: black;
+    padding: 5px 10px;
+    margin: 5px;
+    color: white;
+    border-radius: 20px;
+}
+.status_pro>h1>a>button:hover
+{
+    background-color:#d6dfd6;
+    color: black;
+    border: 2px darkcyan double;
+}
+
+        .st_v
+        {
+            width: 400px;
+            display: inline-block;
+        }

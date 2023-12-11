@@ -1,0 +1,82 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}
+    <title>Document</title>
+    {% endblock %}
+    
+    <link rel="stylesheet" href="{% static 'fonts icons/fa/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reg.css' %}">
+    <link rel="stylesheet" href="{% static 'css/users.css' %}">
+    <link rel="stylesheet" href="{% static 'css/message.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stat.css' %}">
+    <link rel="stylesheet" href="{% static 'js.home.js' %}">
+    
+    <style>
+        nav
+        {
+            background-color:#d6dfd6;
+            padding: 5px;
+            margin: 2px;
+        }
+        .ides>a
+        {
+            background-color: beige;
+            padding: 5px;
+            border-radius: 10px;
+            text-decoration: none;
+
+        }
+        .user
+        {
+            background-color: black;
+            width: 300px;
+            height: 500px;
+        }
+        .ides
+        {
+            position: absolute;
+            top:40px;
+            right: 40px;
+
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div >
+            <h1><i class="fa-regular fa-face-awesome"></i>Chat App</h1>
+        </div>
+        <div class="ides">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logouted' %}">LogOut</a>
+                <a href="{% url 'home' %}">home</a>
+                <a href="{% url 'display' %}">display</a>
+                <a href="{% url 'status' %}">Status</a>
+            {% else %}
+                <a href="{% url 'userlogin'%}">LogIn</a>
+                <a href="{% url 'sinup' %}">SinUp</a>
+            {% endif %}
+        </div>
+    </nav>
+    <!--
+    <div class="user">
+        <table border="2px">
+            <tr>
+                <th>vinoth</th>
+            </tr>
+            <tr>
+                <th>tam</th>
+            </tr>
+            <tr>
+                <th>bala</th>
+            </tr>
+        </table>
+    </div> -->
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
